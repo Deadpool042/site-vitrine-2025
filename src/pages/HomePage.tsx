@@ -11,8 +11,10 @@ function HomePage() {
         />
       </Helmet>
       {/* Contenu de la page */}
-      <div>
-        <h1>Bienvenue sur la page d'accueil</h1>
+      <div className="bg-slate-500">
+        <h1 className="text-xl text-fuchsia-500">
+          Bienvenue sur la page d'accueil
+        </h1>
       </div>
     </>
   );
