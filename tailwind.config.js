@@ -9,6 +9,9 @@ export default {
       transitionProperty: {
         "max-height": "max-height"
       },
+      boxShadow: {
+        "inner-strong": "inset 0 4px 6px rgba(0, 0, 0, 0.5)"
+      },
       colors: {
         "primary-color": "#D0B444",
         "grey-text": "#F9F9F9",

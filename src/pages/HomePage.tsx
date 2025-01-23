@@ -1,3 +1,4 @@
+import BannerHome from "@/components/ui/BannerHome";
 import { Helmet } from "react-helmet-async";
 
 function HomePage() {
@@ -10,12 +11,8 @@ function HomePage() {
           content="Description de la page"
         />
       </Helmet>
-      {/* Contenu de la page */}
-      <div className="bg-slate-500">
-        <h1 className="text-xl text-fuchsia-500">
-          Bienvenue sur la page d'accueil
-        </h1>
-      </div>
+
+      <BannerHome />
     </>
   );
 }

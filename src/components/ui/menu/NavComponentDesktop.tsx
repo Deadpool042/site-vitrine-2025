@@ -1,49 +1,127 @@
 import { useMediaQuery } from "@/lib/useMediaQuey";
 import { Card, CardContent, CardTitle } from "../card";
 import { menuItems, MenuProps } from "@/lib/menuDatas";
+import { ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom";
 
-function NavComponentDesktop({ toggleSubMenu, openSubMenu }: MenuProps) {
+function NavComponentDesktop({
+  toggleSubMenu,
+  openSubMenu,
+  openMenu
+}: MenuProps) {
   const isDesktop = useMediaQuery("(min-width: 768px)"); // Affiche uniquement sur les écrans ≥ 768px
+  const isMobile = useMediaQuery("(max-width: 768px)"); // Affiche uniquement sur les écrans ≥ 768px
 
   const subItems = menuItems.map(
     item =>
       item.subItems &&
       item.subItems.map(subItem => (
         <li
-          className=""
+          className="w-full "
           key={subItem.label}
           onClick={() => toggleSubMenu(item.label)}>
-          <Card className="flex items-center justify-center w-40 h-40 transition-all duration-300 ease-in-out bg-transparent border-none hover:bg-[#1B1B1B]">
-            <CardContent className="flex flex-col items-center justify-center gap-3">
-              <img
-                src={subItem.iconSrc}
-                alt={subItem.label}
-                width={50}
-              />
-              <CardTitle className="text-center uppercase text-md text-primary-color">
-                {subItem.label}
-              </CardTitle>
-            </CardContent>
-          </Card>
+          <Link to={subItem.path}>
+            <Card className=" transition-all duration-300 ease-in-out bg-transparent border-none hover:bg-[#1B1B1B] h-28 flex items-center justify-center ">
+              <CardContent className="p-2">
+                <img
+                  src={subItem.iconSrc}
+                  alt={subItem.label}
+                  width={30}
+                  className="mx-auto"
+                />
+                <CardTitle className="text-center uppercase text-md text-primary-color">
+                  {subItem.label}
+                </CardTitle>
+              </CardContent>
+            </Card>
+          </Link>
         </li>
       ))
   );
 
+  const menuMobile = (
+    <ul className="flex flex-col text-center uppercase bg-[#1B1B1B] ">
+      {menuItems.map(menuItem => (
+        <li
+          aria-label={menuItem.label}
+          key={menuItem.label}
+          className="text-grey-text hover:bg-primary-color hover:shadow-inner-strong ">
+          <button
+            aria-expanded={!!openSubMenu[menuItem.label]}
+            aria-controls={`submenu-${menuItem.label}`}
+            onClick={() => toggleSubMenu(menuItem.label)}
+            className="flex justify-center w-full py-2 uppercase"
+            aria-haspopup={menuItem.hasSubItems ? "true" : "false"}>
+            <Link
+              to={menuItem.path || "#"}
+              className="flex">
+              {menuItem.icon && <menuItem.icon className="mr-2" />}
+              {menuItem.label}
+              {menuItem.hasSubItems && (
+                <ChevronDown
+                  className={`transition-transform duration-300 ${
+                    openSubMenu[menuItem.label] ? "transform rotate-180" : ""
+                  }`}
+                />
+              )}
+            </Link>
+          </button>
+          {menuItem.subItems && (
+            <ul
+              id={`submenu-${menuItem.label}`}
+              role="menu"
+              className={`transition-max-height duration-500 ease-in-out overflow-hidden ${
+                openSubMenu[menuItem.label] ? "max-h-96" : "max-h-0"
+              }`}
+              aria-hidden={!openSubMenu[menuItem.label]}>
+              {menuItem.subItems.map(subItem => (
+                <li
+                  key={subItem.label}
+                  role="menuitem"
+                  className={` flex items-center justify-center py-2 bg-black hover:bg-[#1B1B1B]  hover:text-primary-color `}>
+                  <Link
+                    to={subItem.path}
+                    className="flex justify-center w-full">
+                    {subItem.iconSrc && (
+                      <img
+                        src={subItem.iconSrc}
+                        alt={`${subItem.label} icon`}
+                        className="w-6 h-6 mr-2"
+                      />
+                    )}
+                    {subItem.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      ))}
+    </ul>
+  );
   // console.log(subItems.map(item => console.log(item)));
   return (
     // <div className="h-40 opacity-0 md:flex md:opacity-100">
     <>
       {isDesktop && (
-        <div
-          className={` ${
+        <nav
+          className={`flex justify-center ${
             openSubMenu["les expertises"]
-              ? "h-40 opacity-100 "
-              : "  h-0 opacity-0"
-          } transition-all duration-500 ease-in-out`}>
-          <ul className="flex items-center justify-center m-auto">
-            {subItems}
-          </ul>
-        </div>
+              ? " max-h-44 opacity-100 pointer-events-auto "
+              : " min-h-0 opacity-0 pointer-events-none"
+          } transition-all duration-700 ease-in-out  `}>
+          <ul className="flex ">{subItems}</ul>
+        </nav>
+      )}
+      {isMobile && (
+        <nav
+          className={` ${
+            openMenu && openSubMenu
+              ? "max-h-screen opacity-100 "
+              : "max-h-0 opacity-0"
+          } transition-all duration-700 ease-in-out overflow-hidden border-b-2 border-primary-color shadow-md `}>
+          {menuMobile}
+        </nav>
       )}
     </>
   );
