@@ -1,35 +1,42 @@
-import Banner from "@/components/ui/Banner";
+// import Banner from "@/components/ui/layout/Banner";
+import MainLayout from "@/components/MainLayout";
+import HeroComponent from "@/components/ui/layout/HeroComponent";
+import { contactData } from "@/datas/contactData";
 import { Helmet } from "react-helmet-async";
+// import logoStrategyIcon from "@/assets/icons/strategyIcon.svg";
 
-const icon = {
-  iconSrc: "/src/assets/icons/strategyIcon.svg",
-  alt: "Icône de la page de la conseil et expertise en communication",
-  width: 50
-};
+// const icon = {
+//   iconSrc: logoStrategyIcon,
+//   alt: "Icône de la page de la conseil et expertise en communication",
+//   width: 50
+// };
 
-const subtitle = "Une équipe à votre écoute";
+// const subtitle = "Une équipe à votre écoute";
 
-const title = "Contact & Devis";
+// const title = "Contact & Devis";
 
-function Contact() {
+const Contact: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>{subtitle}</title>
+        <title>""</title>
         <meta
           name="description"
           content="Description de la page"
         />
       </Helmet>
-      <Banner
+      <MainLayout>
+        <HeroComponent data={contactData.hero} />
+      </MainLayout>
+      {/* <Banner
         iconSrc={icon.iconSrc}
         alt={icon.alt}
         width={icon.width}
         subtitle={subtitle}
         title={title}
-      />
+      /> */}
     </>
   );
-}
+};
 
 export default Contact;

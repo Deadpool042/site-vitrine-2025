@@ -1,26 +1,24 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import MainLayout from "./components/MainLayout";
 import AppRouter from "./components/Router";
 import Backup from "./components/ui/Backup";
 import { NavigationProvider } from "./lib/NavigationContext";
+import HeaderComponent from "./components/ui/layout/HeaderComponent";
 
 function App() {
   return (
-    <div className="w-screen h-screen space-y-2 text-grey-text">
+    <div className="space-y-10 text-grey-text">
       {/* <p>APP.tsx</p> */}
       <Router>
         <NavigationProvider>
-          <Header />
-
-          <MainLayout>
-            <AppRouter />
-          </MainLayout>
+          {/* <Header /> */}
+          <HeaderComponent />
+          <AppRouter />
         </NavigationProvider>
         <Backup />
+        <Footer />
       </Router>
-      <Footer />
     </div>
   );
 }

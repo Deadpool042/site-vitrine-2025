@@ -17,7 +17,9 @@ import SiteMap from "@/pages/SiteMap";
 import Confidentialites from "@/pages/Confidentialites";
 import MentionsLegales from "@/pages/MentionsLegales";
 import NotFound from "@/pages/NotFound";
-import PageTransition from "@/lib/pageTransition";
+import PageTransition from "@/lib/PageTransition";
+import SiteVitrine from "@/pages/SiteVitrine";
+import SiteEcommerce from "@/pages/SiteEcommere";
 
 function AppRouter() {
   const location = useLocation();
@@ -48,6 +50,22 @@ function AppRouter() {
           element={
             <PageTransition>
               <Site />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/creation-site-internet-roanne"
+          element={
+            <PageTransition>
+              <SiteVitrine />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/creation-site-ecommerce-roanne"
+          element={
+            <PageTransition>
+              <SiteEcommerce />
             </PageTransition>
           }
         />
@@ -100,7 +118,7 @@ function AppRouter() {
           }
         />
         <Route
-          path="/ils-font-confiance-c2projetweb"
+          path="/creations-originales-c2projetweb"
           element={
             <PageTransition>
               <Partenaires />

@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 function MenuDesktop({ toggleSubMenu, openSubMenu }: MenuProps) {
   return (
-    <nav>
-      <ul className="hidden mt-20 uppercase text-grey-text md:flex md:space-x-2">
+    <nav className="">
+      <ul className="hidden mt-20 uppercase text-grey-text md:flex md:space-x-2 ">
         {menuItems.map(item => (
           <li
             key={item.label}

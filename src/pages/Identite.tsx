@@ -1,32 +1,46 @@
-import Banner from "@/components/ui/Banner";
+// // import Banner from "@/components/ui/layout/Banner";
+// import LayoutPageContent from "@/components/ui/LayoutPageContent";
+// import {
+//   articles,
+//   hashtags,
+//   icon,
+//   listItem2,
+//   section1,
+//   section1ListItem,
+//   section2,
+//   section3,
+//   subtitle,
+//   text,
+//   title
+// } from "@/lib/pageDatas/IdentiteData";
+import MainLayout from "@/components/MainLayout";
+import HeroComponent from "@/components/ui/layout/HeroComponent";
+import SectionListItemComponent from "@/components/ui/layout/SectionListItemComponent";
+import SectionTabComponent from "@/components/ui/layout/SectionTabComponent";
+import SingleSectionComponent from "@/components/ui/layout/SingleSectionComponent";
+import { brandingData } from "@/datas/brandingData";
 import { Helmet } from "react-helmet-async";
 
-const icon = {
-  iconSrc: "/src/assets/icons/brandIdentityIcon.svg",
-  alt: "Icône de la page de la conseil et expertise en communication",
-  width: 50
-};
-
-const subtitle = "Agence de Branding à Roanne et alentours";
-
-const title = "Identité de marque";
-
-const text =
-  "Le branding, ou l’art de construire une identité de marque forte, est un élément clé pour différencier votre entreprise dans un marché concurrentiel. À Roanne et ses alentours, C2 Projet Web vous accompagne dans le développement d’une image de marque cohérente et mémorable, qui reflète vos valeurs et capte l’attention de vos clients. Que vous soyez une start-up, une PME ou une grande entreprise, une stratégie de branding bien pensée est essentielle pour construire une relation durable avec votre audience.";
-
-const hashtags = "#seo #referencement #web #digital #communication";
-
-function Identite() {
+const Identite: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>{subtitle}</title>
+        {/* <title>{subtitle}</title> */}
         <meta
           name="description"
           content="Description de la page"
         />
       </Helmet>
-      <Banner
+      <MainLayout>
+        <HeroComponent data={brandingData.hero} />
+        <SingleSectionComponent data={brandingData.singleSections || []} />
+        <SectionTabComponent data={brandingData.singleSections || []} />
+        <SectionListItemComponent
+          data={brandingData.cardSections || []}
+          sectionIndex={0}
+        />
+      </MainLayout>
+      {/* <Banner
         iconSrc={icon.iconSrc}
         alt={icon.alt}
         width={icon.width}
@@ -34,9 +48,17 @@ function Identite() {
         title={title}
         text={text}
         hashtags={hashtags}
-      />
+      /> */}
+      {/* <LayoutPageContent
+        section1={section1}
+        section1ListItem={section1ListItem}
+        section2={section2}
+        articles={articles}
+        section3={section3}
+        listItem2={listItem2}
+      /> */}
     </>
   );
-}
+};
 
 export default Identite;

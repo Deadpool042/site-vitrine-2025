@@ -1,33 +1,23 @@
-import Banner from "@/components/ui/Banner";
+// import Banner from "@/components/ui/layout/Banner";
+
+import MainLayout from "@/components/MainLayout";
+import HeroComponent from "@/components/ui/layout/HeroComponent";
+import SectionListItemComponent from "@/components/ui/layout/SectionListItemComponent";
+import SectionSplitComponent from "@/components/ui/layout/SectionSplitComponent";
+import { expertiseData } from "@/datas/expertiseData";
 import { Helmet } from "react-helmet-async";
 
-const icon = {
-  iconSrc: "/src/assets/icons/strategyIcon.svg",
-  alt: "Icône de la page de la conseil et expertise en communication",
-  width: 50
-};
-
-const subtitle = "Conseil et expertise en communication à Roanne et alentours";
-
-const title = "Conseil et Expertise";
-
-const text =
-  "Pour opter pour un conseil en communication à Roanne et alentours avec C2 Projet Web ? Dans un monde où la communication est au cœur des relations entre les entreprises et leurs clients, maîtriser sa stratégie de communication est crucial pour se démarquer. Que vous soyez une petite entreprise locale à Roanne ou une organisation souhaitant renforcer sa notoriété dans les environs, une communication bien pensée peut faire toute la différence. C2 Projet Web, spécialisée dans la stratégie de communication digitale et traditionnelle, offre son expertise pour vous aider à structurer et optimiser votre message, améliorer votre image de marque, et toucher efficacement votre cible.";
-
-const hashtags =
-  "#Communication #StratégieDeCommunication #Marketing #CommunicationVisuelle #DigitalMarketing #SocialMedia #ContentMarketing #Branding #Storytelling #MarketingDigital";
-
-function Expertise() {
+const Expertise: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>{subtitle}</title>
+        <title>""</title>
         <meta
           name="description"
           content="Description de la page"
         />
       </Helmet>
-      <Banner
+      {/* <Banner
         iconSrc={icon.iconSrc}
         alt={icon.alt}
         width={icon.width}
@@ -35,9 +25,34 @@ function Expertise() {
         title={title}
         text={text}
         hashtags={hashtags}
-      />
+      /> */}
+      <MainLayout>
+        <HeroComponent data={expertiseData.hero} />
+        <SectionListItemComponent
+          data={expertiseData.cardSections || []}
+          sectionIndex={0}
+        />
+        <SectionSplitComponent
+          data={expertiseData.splitSections || []}
+          sectionIndex={0}
+        />
+        <SectionListItemComponent
+          data={expertiseData.cardSections || []}
+          sectionIndex={1}
+        />
+      </MainLayout>
+      {/* <LayoutPageContent
+        section1={section1}
+        listItem={listItem}
+        section2={section2}
+        articles={articles}
+        images={images}
+        section3={section3}
+        listItem2={listItem2}
+        articles2={articles2}
+      /> */}
     </>
   );
-}
+};
 
 export default Expertise;

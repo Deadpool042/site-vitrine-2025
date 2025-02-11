@@ -27,6 +27,7 @@ export interface MenuProps {
   toggleSubMenu: (label: string) => void;
   openSubMenu: { [key: string]: boolean };
   openMenu?: boolean;
+  setOpenMenu?: boolean;
 }
 
 // Définition des données des menus

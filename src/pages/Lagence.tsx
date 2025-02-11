@@ -1,19 +1,18 @@
-import Banner from "@/components/ui/Banner";
+// import LayoutWrapper from "@/components/ui/layout/LayoutWrapper";
+
 import { Helmet } from "react-helmet-async";
 
-const icon = {
-  iconSrc: "/src/assets/images/logoC2-bg-remove.webp",
-  alt: "Icône de stratégie",
-  width: 50
-};
+import HeroComponent from "@/components/ui/layout/HeroComponent";
+import { agencyData } from "@/datas/agencyData";
+import SingleSectionComponent from "@/components/ui/layout/SingleSectionComponent";
+import SectionGridItemComponents from "@/components/ui/layout/SectionGridItemComponents";
+import SectionDualImageComponent from "@/components/ui/layout/SectionDualImageComponent";
+import MainLayout from "@/components/MainLayout";
+// import SectionGridItemComponents from "@/components/ui/layout/SectionGridItemComponents";
+// import SectionSplitComponent from "@/components/ui/layout/SectionSplitComponent";
 
 const subtitle =
   "C2 Projet Web : Votre agence de communication à Roanne et alentours";
-
-const title = "C2 Projet Web";
-
-const text =
-  "Vous cherchez <strong>une agence de communication à Roanne et dans ses environs </strong>?  <strong>C2 Projet Web</strong> est l’expert qu’il vous faut pour développer votre image de marque et améliorer votre visibilité en ligne. Située à Roanne, notre agence propose une gamme complète de services pour vous aider à atteindre vos objectifs commerciaux grâce à des stratégies de communication efficaces.";
 
 function Lagence() {
   return (
@@ -25,14 +24,29 @@ function Lagence() {
           content="Description de la page"
         />
       </Helmet>
-      <Banner
-        iconSrc={icon.iconSrc}
-        alt={icon.alt}
-        width={icon.width}
-        subtitle={subtitle}
-        title={title}
-        text={text}
-      />
+      <MainLayout>
+        <HeroComponent data={agencyData.hero} />
+        <SingleSectionComponent data={agencyData.singleSections || []} />
+        <SectionGridItemComponents data={agencyData.cardSections || []} />
+        <SectionDualImageComponent data={agencyData.dualImageSections || []} />
+      </MainLayout>
+      {/* <LayoutWrapper className=""> */}
+      {/* <section className="flex flex-col max-w-6xl mx-auto my-10 space-y-10">
+        <p className="px-10 text-center">{agencyData.mapEmbedUrl.subtitle}</p>
+        <iframe
+          src={agencyData.mapEmbedUrl.url}
+          className=" h-96 md:max-h-[400px] rounded-md shadow-md"
+          allowFullScreen
+          loading="lazy"></iframe>
+        <p className="text-3xl font-semibold text-center">
+          {agencyData.mapEmbedUrl.title}
+        </p>
+        <p className="text-center">{agencyData.mapEmbedUrl.text}</p>
+      </section>
+
+      <SectionGridItemComponents data={agencyData.expertise} />
+      <SectionSplitComponent data={agencyData.sectionSplit} /> */}
+      {/* </LayoutWrapper> */}
     </>
   );
 }

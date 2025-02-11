@@ -3,16 +3,19 @@ import { Button } from "./ui/Button";
 import { useState } from "react";
 import MenuDesktop from "./ui/menu/MenuDesktop";
 import NavComponentDesktop from "./ui/menu/NavComponentDesktop";
-import LogoC2 from "@/assets/images/logoC2-bg-remove.webp";
-import { toggle } from "@/lib/toggleMenuHeader";
+import LogoC2 from "@/assets/icons/logoC2.webp";
+import { toggle } from "@/lib/toggle";
 import { Link } from "react-router-dom";
+import { useMediaQuery } from "@/lib/useMediaQuey";
 
 function Header() {
+  const isDesktop = useMediaQuery("(min-width: 768px)"); // Affiche uniquement sur les écrans ≥ 768px
+
   const [openSubMenus, setOpenSubMenus] = useState<{ [key: string]: boolean }>(
     {}
   );
-  const [isOpen, setIsOpen] = useState(false);
 
+  const [isOpen, setIsOpen] = useState(false);
   const handleSubMenuToggle = (label: string) => {
     setOpenSubMenus(prevState => ({
       ...prevState,
@@ -22,10 +25,12 @@ function Header() {
 
   return (
     <div
-      className={`sticky top-0 flex flex-col bg-black/80 backdrop-blur-lg ${
-        isOpen ? "" : ""
-      } max-w-[1600px] mx-auto z-50`}>
-      <header className="flex flex-col items-center pt-2 m-3 space-y-5 sm:flex-row sm:justify-between ">
+      className={`sticky top-0 flex flex-col bg-black/80 backdrop-blur-lg 
+      } w-full mx-auto z-50`}>
+      <header
+        className={`flex flex-col items-center pt-2 m-3 space-y-5 sm:flex-row sm:justify-between ${
+          isDesktop && openSubMenus["les expertises"] ? "mb-10" : ""
+        } transition-all duration-300 ease-in-out md:max-2xl justify-center`}>
         <Link
           className="md:absolute md:top-4"
           to="/"
